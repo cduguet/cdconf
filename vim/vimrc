@@ -1,8 +1,84 @@
-:set background=dark
+" VIMRC - vim configuration 
+" Cristian Duguet
 
-" show existing tab with 4 spaces width                                                                 
-set tabstop=4                                                                                           
-" when indenting with '>', use 4 spaces width                                                           
-set shiftwidth=4                                                                                        
-" On pressing tab, insert 4 spaces                                                                      
-set expandtab                                                                                           
+" Settings based on the recommendation of:
+" https://realpython.com/vim-and-python-a-match-made-in-heaven/#syntax-checkinghighlighting
+" ===== GENERAL =====
+
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+" Change ESC key for better access
+inoremap <C-o> <Esc>
+" set nocompatible              " probably not required anymore
+" filetype off                  " probably not required anymore
+syntax on
+" Code Folding
+set foldmethod=indent
+set foldlevel=99
+" encoding UTF-8 
+set encoding=utf-8
+
+" ===== LANGUAGE SPECIFIC CONFIGURATIONS =====
+" Bash - Google style Indentation 
+au BufNewFile,BufRead *.sh 
+    \ set tabstop=2 |
+    \ set softtabstop=2
+
+" Python - PEP 8 indentation
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+    \ let python_highlight_all=1 |
+
+" Command to Run file from current editor
+nnoremap <leader>r :!%:p<Enter>
+
+" Virtual Environment
+" python with virtualenv support
+" needed to execute python code within an environment
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" TODO: add linting
+" maybe flake8? 
+
+" Autocompletion using tabnine
+" TODO
+
+" ===== STYLE =====
+set background=dark
+colorscheme gruvbox
+hi vertsplit ctermfg=238 ctermbg=235
+hi LineNr ctermfg=237
+hi StatusLine ctermfg=235 ctermbg=245
+hi StatusLineNC ctermfg=235 ctermbg=237
+hi Search ctermbg=58 ctermfg=15
+hi Default ctermfg=1
+hi clear SignColumn
+hi SignColumn ctermbg=235
+hi GitGutterAdd ctermbg=235 ctermfg=245
+hi GitGutterChange ctermbg=235 ctermfg=245
+hi GitGutterDelete ctermbg=235 ctermfg=245
+hi GitGutterChangeDelete ctermbg=235 ctermfg=245
+hi EndOfBuffer ctermfg=237 ctermbg=235
+
+set statusline=%=&P\ %f\ %m
+set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+set laststatus=2
+set noshowmode
+
