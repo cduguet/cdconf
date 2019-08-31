@@ -1,3 +1,6 @@
 [submodule "vim/pack/default/start/gruvbox"]
 	path = vim/pack/default/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
+[submodule "vim/pack/default/start/tabnine"]
+	path = vim/pack/default/start/tabnine
+	url = https://github.com/zxqfl/tabnine-vim
