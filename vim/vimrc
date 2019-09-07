@@ -22,6 +22,12 @@ set foldlevel=99
 " encoding UTF-8 
 set encoding=utf-8
 
+" Mouse compatibility
+set ttymouse=xterm2
+set mouse=a
+
+
+
 " ===== LANGUAGE SPECIFIC CONFIGURATIONS =====
 " Bash - Google style Indentation 
 au BufNewFile,BufRead *.sh 
